@@ -11,8 +11,8 @@ FONT_COLORS = {'GREEN': '\033[92m',
            'UNDERLINE': '\033[4m'}
 
 QWERTY = [['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-          ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-          ['Z', 'X', 'C', 'V', 'B', 'N', 'M']]
+          ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ' '],
+          ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ' ', ' ', ' ']]
 
 class Game():
     def __init__(self):
@@ -40,8 +40,10 @@ class Game():
             return False
 
     def print_board(self):
+        print('-' * 50)
         for i in range(6):
-            print(' ')
+            print('|', end='')
+            print(' ' * 4, end='')
             for j in range(5):
                 to_print = '_'
                 if i < len(self.guesses):
@@ -62,7 +64,12 @@ class Game():
                         print(f'{self.letters_guessed[letter.lower()]}{letter}{FONT_COLORS["ENDC"]}', end=' ')
                     else:
                         print(f'{FONT_COLORS["CYAN"]}{letter}{FONT_COLORS["ENDC"]}', end=' ')
+                print(' ' * 3, end='|')
+            else:
+                print(' ' * 23, end='|')
             print('\n')
+
+        print('-' * 50)
 
     def get_number_of_guesses(self):
         return len(self.guesses)
